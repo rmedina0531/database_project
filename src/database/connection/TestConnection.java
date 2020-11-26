@@ -30,8 +30,8 @@ public class TestConnection {
 		}
 	}
 	
-	public static void main(String[] args) {
-		TestConnection sqlConnect = new TestConnection();
-		sqlConnect.connect();
-	}
+//	public static void main(String[] args) {
+//		TestConnection sqlConnect = new TestConnection();
+//		sqlConnect.connect();
+//	}
 }
