@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 //Name: Medina, Ricardo
 //User Id: cs4222s18
@@ -69,6 +70,49 @@ public class DatabaseInterface {
 		}
 	}
 	
+	public ArrayList<String[]> queryTable(String query) {
+		try(Connection connection = DriverManager.getConnection(
+				url,user,password);){
+			if(connection != null) {
+				System.out.println("Connected to PostgresSQL server Successfully!");
+				
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery(query);
+				
+//				System.out.println(query);
+				int columnCount = resultSet.getMetaData().getColumnCount();
+				ArrayList<String[]> table = new ArrayList<>();
+				String[] columnName = new String[columnCount];
+				
+				for (int i=1; i<=columnCount; i++) {
+					columnName[i-1] = resultSet.getMetaData().getColumnName(i);
+//					System.out.println(resultSet.getMetaData().getColumnName(i));
+				}
+				table.add(columnName);
+				
+//				for (String s : columnName) {
+//					System.out.println(s);
+//				}
+				while (resultSet.next()) {
+					String[] row = new String[columnCount];
+					for (int i=1; i<=resultSet.getMetaData().getColumnCount(); i++) {
+//						if (i > 1) System.out.print(", ");
+						String columnValue = resultSet.getString(i);
+						row[i-1] = columnValue;
+//						System.out.print(resultSet.getMetaData().getColumnName(i) +" "+ columnValue);
+					}
+					table.add(row);
+				}
+				return table;
+			}else {
+				System.out.println("Failed to connect to PostgresSQL server");
+				return null;
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 	//add faculty
 	//remove faculty
 	//add project

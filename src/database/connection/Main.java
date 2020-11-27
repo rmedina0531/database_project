@@ -1,5 +1,9 @@
 package database.connection;
 
+import java.util.ArrayList;
+
+import gui.GUI;
+
 public class Main {
 
 	public static DatabaseInterface iface = new DatabaseInterface();
@@ -7,12 +11,20 @@ public class Main {
 	public static void main(String[] args) {
 		tests();
 	}
+	
 	public static void tests() {
 //		testFaculty();
-		testProject();
-		
+//		testProject();
+//		testColumnNamesParser();
+//		testQueryTable();
+		testGUI();
 		
 	}
+	
+	public static void testColumnNamesParser() {
+		iface.queryTable("SELECT * FROM professor");
+	}
+	
 	public static void testFaculty() {
 		//test database query
 		iface.query("SELECT * FROM professor");
@@ -42,5 +54,18 @@ public class Main {
 		iface.removeEntry(p);
 		iface.query("SELECT * from project");
 		
+	}
+	public static void testQueryTable() {
+		ArrayList<String[]> table = iface.queryTable("SELECT * FROM professor");
+		for (String[] row : table) {
+			for (String element : row) {
+				System.out.print(element + ", ");
+			}
+			System.out.println("");
+		}
+		
+	}
+	public static void testGUI() {
+		GUI gui = new GUI();
 	}
 }

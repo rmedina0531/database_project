@@ -23,6 +23,16 @@ public class Faculty implements DatabaseAddRemove{
 		this.worksAt = worksAt;
 	}
 	
+	public Faculty(String[] data) {
+		this.SSN = Integer.parseInt(data[0]);
+		this.name = data[1];
+		this.age = Integer.parseInt(data[2]);
+		this.gender = data[3];
+		this.rank = data[4];
+		this.researchSpecialty = data[5];
+		this.worksAt = Integer.parseInt(data[6]);
+	}
+	
 	public Faculty(ResultSet r) {
 		try {
 			this.SSN = Integer.parseInt(r.getString(0));
