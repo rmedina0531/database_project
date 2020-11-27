@@ -24,6 +24,14 @@ public class Project implements DatabaseAddRemove {
 		this.principalInvestigator = principalInvestigator;
 	}
 	
+	public Project(String[] data) {
+		this.projectNo = Integer.parseInt(data[0]);
+		this.sponsorName = data[1];
+		this.startingDate = data[2];
+		this.endingDate = data[3];
+		this.principalInvestigator = Integer.parseInt(data[4]);
+	}
+	
 	public Project(ResultSet r) {
 		try {
 			this.projectNo = Integer.parseInt(r.getString(0));

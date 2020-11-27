@@ -9,21 +9,21 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import database.connection.DatabaseInterface;
-import database.connection.Faculty;
+import database.connection.Project;
 
-public class FacultyTablePanel extends JPanel{
+public class ProjectTablePanel extends JPanel{
 	private String[] columnNames;
-	private Faculty[] faculty;
+	private Project[] project;
 	private JTable jtable;
 	
 	
-	public FacultyTablePanel (DatabaseInterface iface) {
-		ArrayList<String[]> table = iface.queryTable("SELECT * FROM professor");
+	public ProjectTablePanel (DatabaseInterface iface) {
+		ArrayList<String[]> table = iface.queryTable("SELECT * from project");
 		this.columnNames = table.get(0);
 		table.remove(0);
-		this.faculty = new Faculty[table.size()];
+		this.project = new Project[table.size()];
 		for (int i = 0; i < table.size(); i++) {
-			this.faculty[i] = new Faculty(table.get(i));
+			this.project[i] = new Project(table.get(i));
 		}
 		Object[][] data = new Object[table.size()][table.get(0).length];
 		for(int i=0; i<table.size(); i++) {
@@ -38,3 +38,4 @@ public class FacultyTablePanel extends JPanel{
 				
 	}
 }
+
