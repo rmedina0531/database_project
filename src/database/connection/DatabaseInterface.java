@@ -17,8 +17,8 @@ public class DatabaseInterface {
 	//jdbc userName
 	//jdbc password
 	private final String url = "jdbc:postgresql://cs1.calstatela.edu/";
-	private final String user = "cs4222s18";
-	private final String password = "CsaMasvT";
+	private final String user = "";
+	private final String password = "";
 	
 	private void connect() {
 		try(Connection connection = DriverManager.getConnection(
