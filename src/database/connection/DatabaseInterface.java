@@ -7,11 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-//Name: Medina, Ricardo
-//User Id: cs4222s18
-//Pass: CsaMasvT
-
-
 public class DatabaseInterface {
 	//jdbc url
 	//jdbc userName
