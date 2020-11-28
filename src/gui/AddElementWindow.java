@@ -7,10 +7,12 @@ import javax.swing.JTextField;
 import database.connection.DatabaseEntry;
 import database.connection.DatabaseInterface;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 	
@@ -23,6 +25,7 @@ public class AddElementWindow extends JFrame{
 	private DatabaseInterface iface;
 	private DatabaseEntry entry;
 	public AddElementWindow(DatabaseEntry entry, DatabaseInterface iface) {
+		super("Add Entry");
 		this.iface = iface;
 		this.entry = entry;
 		//generate the JLabels and text fields
@@ -30,7 +33,7 @@ public class AddElementWindow extends JFrame{
 		textFields = new JTextField[entry.variables().length];
 		for (int i = 0; i < entry.variables().length; i++) {
 			labels[i] = new JLabel(entry.variables()[i]);
-			textFields[i] = new JTextField();
+			textFields[i] = new JTextField("",15);
 		}
 		
 //		listenedObject.addActionListener(new ActionListener() {
@@ -55,15 +58,28 @@ public class AddElementWindow extends JFrame{
 		
 		
 		//make the window
-		JPanel panel = new JPanel();
-		for (int i = 0; i < this.labels.length; i++) {
-			panel.add(this.labels[i]);
-			panel.add(this.textFields[i]);
-		}
-		panel.add(this.addButton);
-		panel.add(this.cancelButton);
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		JPanel[] rows = new JPanel[entry.variables().length];
+		JPanel buttonPanel = new JPanel();
 		
-		this.setContentPane(panel);
+//		JPanel labelPanel = new JPanel();
+//		labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
+//		JPanel textFieldPanel = new JPanel();
+//		textFieldPanel.setLayout(new BoxLayout(textFieldPanel, BoxLayout.Y_AXIS));
+		
+		
+		for (int i = 0; i < this.labels.length; i++) {
+			rows[i] = new JPanel();
+			rows[i].add(this.labels[i]);
+			rows[i].add(this.textFields[i]);
+			mainPanel.add(rows[i]);
+		}
+		buttonPanel.add(addButton);
+		buttonPanel.add(cancelButton);
+		mainPanel.add(buttonPanel);
+		
+		this.setContentPane(mainPanel);
 		
 	    //Display the window.
 	    this.pack();

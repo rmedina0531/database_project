@@ -68,6 +68,10 @@ public class FacultyTablePanel extends JPanel{
 				
 	}
 	
+	private void refresh() {
+		jtable.fireTableDataChanged();
+	}
+	
 	private void addFacultyWindow() {
 		//create and show new window
 		Faculty f = new Faculty();
