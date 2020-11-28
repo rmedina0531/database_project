@@ -8,7 +8,7 @@ import java.sql.SQLException;
 //		PRIMARY KEY (projectNo), 
 //		FOREIGN KEY (principleInvestigator) references professor(SSN) on delete restrict);
 
-public class Project implements DatabaseAddRemove {
+public class Project implements DatabaseEntry {
 	private int projectNo;
 	private String sponsorName;
 	private String startingDate;
@@ -25,11 +25,7 @@ public class Project implements DatabaseAddRemove {
 	}
 	
 	public Project(String[] data) {
-		this.projectNo = Integer.parseInt(data[0]);
-		this.sponsorName = data[1];
-		this.startingDate = data[2];
-		this.endingDate = data[3];
-		this.principalInvestigator = Integer.parseInt(data[4]);
+		this.setElements(data);
 	}
 	
 	public Project(ResultSet r) {
@@ -61,6 +57,25 @@ public class Project implements DatabaseAddRemove {
 		// TODO Auto-generated method stub
 		String output = "DELETE FROM project where projectNo=" + this.projectNo;
 		return output;
+	}
+
+	//returns the cell variables for the entry
+	//used by window to generate the appropriate labels
+	@Override
+	public String[] variables() {
+		String[] list = new String[] {"projectNo", "sponsorName", "startingDate", "endindDate", "principalInvestigator"};
+		return list;
+	}
+
+	@Override
+	public void setElements(String[] values) {
+		// TODO Auto-generated method stub
+		this.projectNo = Integer.parseInt(values[0]);
+		this.sponsorName = values[1];
+		this.startingDate = values[2];
+		this.endingDate = values[3];
+		this.principalInvestigator = Integer.parseInt(values[4]);
+		
 	}
 	
 	

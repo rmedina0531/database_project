@@ -127,7 +127,7 @@ public class DatabaseInterface {
 				System.out.println("Connected to PostgresSQL server Successfully!");
 				
 				Statement statement = connection.createStatement();
-				statement.executeUpdate(((DatabaseAddRemove) entry).addStatement());
+				statement.executeUpdate(((DatabaseEntry) entry).addStatement());
 				System.out.println("Added Successfully");
 
 			}else {
@@ -149,7 +149,7 @@ public class DatabaseInterface {
 				System.out.println("Connected to PostgresSQL server Successfully!");
 				
 				Statement statement = connection.createStatement();
-				statement.executeUpdate(((DatabaseAddRemove) entry).removeStatement());
+				statement.executeUpdate(((DatabaseEntry) entry).removeStatement());
 				
 				System.out.println("Removed Successfully");
 

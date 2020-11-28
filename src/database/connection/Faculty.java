@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 //create table professor(SSN int NOT NULL, name varchar(255), age int, gender varchar(1), rank varchar(255),
 //researchSpecialty varchar(255), worksAt int Not Null, PRIMARY KEY (SSN));
-public class Faculty implements DatabaseAddRemove{
+public class Faculty implements DatabaseEntry{
 	private int SSN;
 	private String name;
 	private int age;
@@ -12,6 +12,9 @@ public class Faculty implements DatabaseAddRemove{
 	private String rank;
 	private String researchSpecialty;
 	private int worksAt;
+	
+	
+	public Faculty() {};
 	
 	public Faculty(int ssn, String name, int age, String gender, String rank, String researchSpecialy, int worksAt) {
 		this.SSN = ssn;
@@ -24,13 +27,7 @@ public class Faculty implements DatabaseAddRemove{
 	}
 	
 	public Faculty(String[] data) {
-		this.SSN = Integer.parseInt(data[0]);
-		this.name = data[1];
-		this.age = Integer.parseInt(data[2]);
-		this.gender = data[3];
-		this.rank = data[4];
-		this.researchSpecialty = data[5];
-		this.worksAt = Integer.parseInt(data[6]);
+		this.setElements(data);
 	}
 	
 	public Faculty(ResultSet r) {
@@ -52,63 +49,6 @@ public class Faculty implements DatabaseAddRemove{
 		}
 		
 	}
-
-	public int getSSN() {
-		return SSN;
-	}
-
-	public void setSSN(int sSN) {
-		SSN = sSN;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getRank() {
-		return rank;
-	}
-
-	public void setRank(String rank) {
-		this.rank = rank;
-	}
-
-	public String getResearchSpecialty() {
-		return researchSpecialty;
-	}
-
-	public void setResearchSpecialty(String researchSpecialty) {
-		this.researchSpecialty = researchSpecialty;
-	}
-
-	public int getWorksAt() {
-		return worksAt;
-	}
-
-	public void setWorksAt(int worksAt) {
-		this.worksAt = worksAt;
-	}
-
 	@Override
 	public String addStatement() {
 		String output = "Insert into professor Values("+this.SSN+",'"+this.name+"',"
@@ -120,6 +60,23 @@ public class Faculty implements DatabaseAddRemove{
 		String output = "DELETE FROM professor where SSN=" + this.SSN;
 		return output;
 	}
-	
-	
+
+	@Override
+	public String[] variables() {
+		String[] list = new String[] {"SSN", "name", "age", "gender", "rank", "researchSpecialty", "worksAt"};
+		return list;
+	}
+
+	@Override
+	public void setElements(String[] values) {
+		// TODO Auto-generated method stub
+		this.SSN = Integer.parseInt(values[0]);
+		this.name = values[1];
+		this.age = Integer.parseInt(values[2]);
+		this.gender = values[3];
+		this.rank = values[4];
+		this.researchSpecialty = values[5];
+		this.worksAt = Integer.parseInt(values[6]);
+	}
 }
+
