@@ -1,41 +1,41 @@
 package gui;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import database.connection.DatabaseInterface;
 import database.connection.Project;
 
-public class ProjectTablePanel extends JPanel{
-	private String[] columnNames;
-	private Project[] project;
-	private JTable jtable;
-	
+public class ProjectTablePanel extends TablePanel{
 	
 	public ProjectTablePanel (DatabaseInterface iface) {
-		ArrayList<String[]> table = iface.queryTable("SELECT * from project");
-		this.columnNames = table.get(0);
-		table.remove(0);
-		this.project = new Project[table.size()];
-		for (int i = 0; i < table.size(); i++) {
-			this.project[i] = new Project(table.get(i));
-		}
-		Object[][] data = new Object[table.size()][table.get(0).length];
-		for(int i=0; i<table.size(); i++) {
-			for(int j=0; j<table.get(i).length; j++) {
-				data[i][j] = table.get(i)[j];
+		
+		super(iface, "SELECT * FROM project");
+		
+		this.addButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addProjectWindow();
 			}
-		}
-		//Table stuff
-		jtable = new JTable(data, columnNames);
-		JScrollPane scrollPane = new JScrollPane(jtable);
-		this.add(scrollPane);
-				
+		});
+		this.removeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				removeProjectEvent();
+			}
+		});
+	}
+	
+	private void addProjectWindow() {
+		//create and show new window
+		Project p = new Project();
+		AddElementWindow window = new AddElementWindow(p, this.iface);
+	}
+	private void removeProjectEvent() {
+		//get the selected row from jtable
+////		Project f = new Project(getRow);
+//		iface.removeEntry(f);
+//		refreshTable();
+		System.out.println("RemoveEvent");
 	}
 }
-

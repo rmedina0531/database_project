@@ -27,7 +27,7 @@ public class Project implements DatabaseEntry {
 	public Project(String[] data) {
 		this.setElements(data);
 	}
-	
+	public Project() {};
 	public Project(ResultSet r) {
 		try {
 			this.projectNo = Integer.parseInt(r.getString(0));

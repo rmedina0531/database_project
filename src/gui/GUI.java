@@ -18,11 +18,11 @@ public class GUI extends JFrame{
 	    this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
 	    JPanel paintPanel = new FacultyTablePanel(iface);
-//	    JPanel paintPanel2 = new ProjectTablePanel(iface);
+	    JPanel paintPanel2 = new ProjectTablePanel(iface);
 //	    JPanel textPanel = new JPanel();
 
 	    mainPanel.add(paintPanel);
-//	    mainPanel.add(paintPanel2);
+	    mainPanel.add(paintPanel2);
 	    
 	    frame.setContentPane(mainPanel);
 	
