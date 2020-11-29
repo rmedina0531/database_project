@@ -17,24 +17,11 @@ public class FacultyTablePanel extends TablePanel{
 				addFacultyWindow();
 			}
 		});
-		this.removeButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				removeFacultyEvent();
-			}
-		});
 	}
 	
 	private void addFacultyWindow() {
 		//create and show new window
 		Faculty f = new Faculty();
 		AddElementWindow window = new AddElementWindow(f, this.iface);
-	}
-	private void removeFacultyEvent() {
-		//get the selected row from jtable
-////		Faculty f = new Faculty(getRow);
-//		iface.removeEntry(f);
-//		refreshTable();
-		System.out.println("RemoveEvent");
 	}
 }

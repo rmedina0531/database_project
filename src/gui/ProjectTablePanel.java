@@ -18,24 +18,11 @@ public class ProjectTablePanel extends TablePanel{
 				addProjectWindow();
 			}
 		});
-		this.removeButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				removeProjectEvent();
-			}
-		});
 	}
 	
 	private void addProjectWindow() {
 		//create and show new window
 		Project p = new Project();
 		AddElementWindow window = new AddElementWindow(p, this.iface);
-	}
-	private void removeProjectEvent() {
-		//get the selected row from jtable
-////		Project f = new Project(getRow);
-//		iface.removeEntry(f);
-//		refreshTable();
-		System.out.println("RemoveEvent");
 	}
 }
