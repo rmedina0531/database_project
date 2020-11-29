@@ -17,12 +17,18 @@ public class Main {
 //		testProject();
 //		testColumnNamesParser();
 //		testQueryTable();
-		testGUI();
+		testFirstQuery();
+//		testGUI();
 		
 	}
 	
 	public static void testColumnNamesParser() {
 		iface.queryTable("SELECT * FROM professor");
+	}
+	
+	public static void testFirstQuery() {
+//		Display the PI, Co_PI, and student information of a project
+		iface.query("SELECT * from graduateStudent NATURAL JOIN ResearchAssistant where projectNo = 3002");
 	}
 	
 	public static void testFaculty() {

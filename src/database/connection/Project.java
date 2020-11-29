@@ -43,6 +43,10 @@ public class Project implements DatabaseEntry {
 			e.printStackTrace();
 		}
 	}
+	
+	public int getProjectNo() {
+		return this.projectNo;
+	}
 
 	@Override
 	public String addStatement() {

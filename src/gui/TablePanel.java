@@ -21,11 +21,12 @@ public class TablePanel extends JPanel{
 	private ArrayList<String[]> table;
 	private String tableQuery;
 	
-	private JTable jtable;
+	protected JTable jtable;
 	protected JButton addButton;
 	protected JButton removeButton;
 	protected JButton refreshButton;
-	private DefaultTableModel tableModel;
+	protected JButton moreInfoButton;
+	protected DefaultTableModel tableModel;
 	
 	protected DatabaseInterface iface;
 	
@@ -53,6 +54,7 @@ public class TablePanel extends JPanel{
 		this.addButton = new JButton("Add");
 		this.removeButton = new JButton("Remove");
 		this.refreshButton = new JButton("Refresh");
+		this.moreInfoButton = new JButton("More Info");
 		
 		
 		this.removeButton.addActionListener(new ActionListener() {
@@ -78,13 +80,14 @@ public class TablePanel extends JPanel{
 		buttonPanel.add(addButton);
 		buttonPanel.add(removeButton);
 		buttonPanel.add(refreshButton);
+		buttonPanel.add(moreInfoButton);
 		this.add(buttonPanel);
 				
 	}
 	
 	private void refreshTable() {
 		//remove all the rows
-		System.out.println("refresh");
+//		System.out.println("refresh");
 		if (tableModel.getRowCount() > 0) {
 		    for (int i = tableModel.getRowCount() - 1; i > -1; i--) {
 		    	tableModel.removeRow(i);
