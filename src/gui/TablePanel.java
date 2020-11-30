@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Vector;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -21,11 +22,12 @@ public class TablePanel extends JPanel{
 	private ArrayList<String[]> table;
 	private String tableQuery;
 	
-	private JTable jtable;
+	protected JTable jtable;
 	protected JButton addButton;
 	protected JButton removeButton;
 	protected JButton refreshButton;
-	private DefaultTableModel tableModel;
+	protected JButton moreInfoButton;
+	protected DefaultTableModel tableModel;
 	
 	protected DatabaseInterface iface;
 	
@@ -53,6 +55,7 @@ public class TablePanel extends JPanel{
 		this.addButton = new JButton("Add");
 		this.removeButton = new JButton("Remove");
 		this.refreshButton = new JButton("Refresh");
+		this.moreInfoButton = new JButton("More Info");
 		
 		
 		this.removeButton.addActionListener(new ActionListener() {
@@ -67,6 +70,12 @@ public class TablePanel extends JPanel{
 				refreshTable();
 			}
 		});
+		this.moreInfoButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				moreInfoEvent();
+			}
+		});
 		
 		//vertival panel
 		//contains the table and the text boxes
@@ -78,6 +87,7 @@ public class TablePanel extends JPanel{
 		buttonPanel.add(addButton);
 		buttonPanel.add(removeButton);
 		buttonPanel.add(refreshButton);
+		buttonPanel.add(moreInfoButton);
 		this.add(buttonPanel);
 				
 	}
@@ -100,17 +110,28 @@ public class TablePanel extends JPanel{
 		tableModel.fireTableDataChanged();
 	}
 	
-	private void removeFacultyEvent() {
+	private void moreInfoEvent() {
+		//get the selected row from jtable
+		if (jtable.getSelectedColumn() != -1) {
+			String x =(String) ((Vector) tableModel.getDataVector().elementAt(jtable.getSelectedRow())).elementAt(0);
+			System.out.print(x);
+		}
+		
+	}
+	
+	private void removeFacultyEvent(DatabaseEntry entry) {
+		
 		//get the selected row from jtable
 		
 //		Converting Vector to Object Array 
 		if (jtable.getSelectedColumn() != -1) {
-	        Object[] objArray = tableModel.getDataVector().elementAt(jtable.getSelectedRow()).toArray();
-//	        Convert Object[] to String[] 
-	        String[] array = Arrays.copyOf(objArray, 
-	                                       objArray.length, 
-	                                       String[].class);
-			Faculty f = new Faculty(array);
+			String[] array = new String[entry];
+			//getting all the values of the selected row
+			for(int i=0;i<array.length;i++) {
+				String x = (String) ((Vector) tableModel.getDataVector().elementAt(jtable.getSelectedRow())).elementAt(i);
+				array[i]=x;
+			}
+			entry.setElements(array);
 			iface.removeEntry(f);
 			this.refreshTable();
 //			System.out.println(f.removeStatement());

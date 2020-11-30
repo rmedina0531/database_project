@@ -14,13 +14,13 @@ public class DatabaseInterface {
 	private final String url = "jdbc:postgresql://cs1.calstatela.edu/";
 	private final String user = "";
 	private final String password = "";
-	
+
 	private void connect() {
 		try(Connection connection = DriverManager.getConnection(
 				url,user,password);){
 			if(connection != null) {
 				System.out.println("Connected to PostgresSQL server Successfully!");
-				
+
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("SELECT * from department");
 

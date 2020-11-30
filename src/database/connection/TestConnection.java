@@ -4,18 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-//Name: Medina, Ricardo
-//User Id: cs4222s18
-//Pass: CsaMasvT
-
 
 public class TestConnection {
 	//jdbc url
 	//jdbc userName
 	//jdbc password
 	private final String url = "jdbc:postgresql://cs1.calstatela.edu/";
-	private final String user = "cs4222s18";
-	private final String password = "CsaMasvT";
+	private final String user = "";
+	private final String password = "";
 	
 	private void connect() {
 		try(Connection connection = DriverManager.getConnection(

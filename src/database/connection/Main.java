@@ -19,6 +19,11 @@ public class Main {
 //		testQueryTable();
 		testGUI();
 		
+		//These two method calls are to test the triggers, which return errors.
+//		student_restrict();
+//		faculty_restrict();
+		
+		
 	}
 	
 	public static void testColumnNamesParser() {
@@ -67,5 +72,19 @@ public class Main {
 	}
 	public static void testGUI() {
 		GUI gui = new GUI();
+	}
+	
+	public static void faculty_restrict() {
+		iface.query("INSERT INTO CoInvestigator(projectno,ssn)\n" + 
+				"Values('1','5');\n" + 
+				"");
+	}
+	
+	public static void student_restrict() {
+		iface.query("INSERT INTO ResearchAssistant(projectno,ssn)\n" + 
+				"Values('2','12');\n" + 
+				"INSERT INTO ResearchAssistant(projectno,ssn)\n" + 
+				"Values('3','12');\n" + 
+				"");
 	}
 }
