@@ -19,6 +19,13 @@ public class FacultyTablePanel extends TablePanel{
 			}
 		});
 		
+		this.removeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				removeFacultyEvent();
+			}
+		});
+		
 		this.moreInfoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -33,6 +40,10 @@ public class FacultyTablePanel extends TablePanel{
 		AddElementWindow window = new AddElementWindow(f, this.iface);
 	}
 	
+	private void removeFacultyEvent() {
+		super.removeEntryEvent(new Faculty());
+	}
+	
 	private void moreInfoFacultyWindow() {
 		//create and show new window
 		
@@ -41,8 +52,6 @@ public class FacultyTablePanel extends TablePanel{
 			//System.out.print(x);
 			String SSN = x;
 			moreInfoWindow window = new moreInfoWindow(this.iface, 1, SSN);
-		}
-		
-		
+		}	
 	}
 }

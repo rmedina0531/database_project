@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import database.connection.DatabaseEntry;
 import database.connection.DatabaseInterface;
 import database.connection.Faculty;
 
@@ -57,25 +58,18 @@ public class TablePanel extends JPanel{
 		this.refreshButton = new JButton("Refresh");
 		this.moreInfoButton = new JButton("More Info");
 		
-		
-		this.removeButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				removeFacultyEvent();
-			}
-		});
 		this.refreshButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				refreshTable();
 			}
 		});
-		this.moreInfoButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				moreInfoEvent();
-			}
-		});
+//		this.moreInfoButton.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				moreInfoEvent();
+//			}
+//		});
 		
 		//vertival panel
 		//contains the table and the text boxes
@@ -110,29 +104,29 @@ public class TablePanel extends JPanel{
 		tableModel.fireTableDataChanged();
 	}
 	
-	private void moreInfoEvent() {
-		//get the selected row from jtable
-		if (jtable.getSelectedColumn() != -1) {
-			String x =(String) ((Vector) tableModel.getDataVector().elementAt(jtable.getSelectedRow())).elementAt(0);
-			System.out.print(x);
-		}
+//	private void moreInfoEvent() {
+//		//get the selected row from jtable
+//		if (jtable.getSelectedColumn() != -1) {
+//			String x =(String) ((Vector) tableModel.getDataVector().elementAt(jtable.getSelectedRow())).elementAt(0);
+////			System.out.print(x);
+//		}
 		
-	}
+//	}
 	
-	private void removeFacultyEvent(DatabaseEntry entry) {
+	protected void removeEntryEvent(DatabaseEntry entry) {
 		
 		//get the selected row from jtable
 		
 //		Converting Vector to Object Array 
 		if (jtable.getSelectedColumn() != -1) {
-			String[] array = new String[entry];
+			String[] array = new String[entry.variables().length];
 			//getting all the values of the selected row
 			for(int i=0;i<array.length;i++) {
 				String x = (String) ((Vector) tableModel.getDataVector().elementAt(jtable.getSelectedRow())).elementAt(i);
 				array[i]=x;
 			}
 			entry.setElements(array);
-			iface.removeEntry(f);
+			iface.removeEntry(entry);
 			this.refreshTable();
 //			System.out.println(f.removeStatement());
 		}

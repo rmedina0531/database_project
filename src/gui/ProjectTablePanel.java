@@ -2,11 +2,8 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
-=======
 import java.util.Vector;
 import java.util.concurrent.TimeUnit;
->>>>>>> bbcae19c70361ae426ce2a3b5849c9ab1be21987
 
 import database.connection.DatabaseInterface;
 import database.connection.Project;
@@ -24,6 +21,13 @@ public class ProjectTablePanel extends TablePanel{
 			}
 		});
 		
+		this.removeButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				removeProjectEvent();
+			}
+		});
+		
 		this.moreInfoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -36,6 +40,10 @@ public class ProjectTablePanel extends TablePanel{
 		//create and show new window
 		Project p = new Project();
 		AddElementWindow window = new AddElementWindow(p, this.iface);
+	}
+	
+	private void removeProjectEvent() {
+		super.removeEntryEvent(new Project());
 	}
 	
 	private void moreInfoProjectWindow() {

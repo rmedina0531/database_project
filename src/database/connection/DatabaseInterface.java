@@ -12,8 +12,8 @@ public class DatabaseInterface {
 	//jdbc userName
 	//jdbc password
 	private final String url = "jdbc:postgresql://cs1.calstatela.edu/";
-	private final String user = "";
-	private final String password = "";
+	private final String user = "cs4222s18";
+	private final String password = "CsaMasvT";
 
 	private void connect() {
 		try(Connection connection = DriverManager.getConnection(
@@ -47,7 +47,7 @@ public class DatabaseInterface {
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery(query);
 				
-				System.out.println(query);
+//				System.out.println(query);
 				
 				while(resultSet.next()) {
 					for (int i=1; i<=resultSet.getMetaData().getColumnCount(); i++) {
@@ -115,14 +115,14 @@ public class DatabaseInterface {
 	//display the PI, COPI and student info on a project
 	//Display all students a professor supervises and the project each student works on
 	
-	public <E> void addEntry (E entry) {
+	public void addEntry (DatabaseEntry entry) {
 		try(Connection connection = DriverManager.getConnection(
 				url,user,password);){
 			if(connection != null) {
 				System.out.println("Connected to PostgresSQL server Successfully!");
 				
 				Statement statement = connection.createStatement();
-				statement.executeUpdate(((DatabaseEntry) entry).addStatement());
+				statement.executeUpdate(entry.addStatement());
 				System.out.println("Added Successfully");
 
 			}else {
@@ -137,14 +137,14 @@ public class DatabaseInterface {
 		}
 	}
 	
-	public <E> void removeEntry (E entry) {
+	public void removeEntry (DatabaseEntry entry) {
 		try(Connection connection = DriverManager.getConnection(
 				url,user,password);){
 			if(connection != null) {
 				System.out.println("Connected to PostgresSQL server Successfully!");
 				
 				Statement statement = connection.createStatement();
-				statement.executeUpdate(((DatabaseEntry) entry).removeStatement());
+				statement.executeUpdate(entry.removeStatement());
 				
 				System.out.println("Removed Successfully");
 
