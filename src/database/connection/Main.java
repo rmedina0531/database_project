@@ -18,6 +18,7 @@ public class Main {
 //		testColumnNamesParser();
 //		testQueryTable();
 		testGUI();
+		//This is a comment
 		
 		//These two method calls are to test the triggers, which return errors.
 //		student_restrict();
