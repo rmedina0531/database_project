@@ -1,0 +1,3 @@
+Need to make file for presentation
+Should display functionality of triggers and functions
+
