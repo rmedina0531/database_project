@@ -15,28 +15,28 @@ public class DatabaseInterface {
 	private final String user = "cs4222s18";
 	private final String password = "CsaMasvT";
 
-	private void connect() {
-		try(Connection connection = DriverManager.getConnection(
-				url,user,password);){
-			if(connection != null) {
-				System.out.println("Connected to PostgresSQL server Successfully!");
-
-				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * from department");
-
-				while(resultSet.next()) {
-					for (int i=1; i<=resultSet.getMetaData().getColumnCount(); i++) {
-						System.out.println(resultSet.getString(i));
-					}
-					System.out.println("New Row");
-				}
-			}else {
-				System.out.println("Failed to connect to PostgresSQL server");
-			}
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-	}
+//	private void connect() {
+//		try(Connection connection = DriverManager.getConnection(
+//				url,user,password);){
+//			if(connection != null) {
+//				System.out.println("Connected to PostgresSQL server Successfully!");
+//
+//				Statement statement = connection.createStatement();
+//				ResultSet resultSet = statement.executeQuery("SELECT * from department");
+//
+//				while(resultSet.next()) {
+//					for (int i=1; i<=resultSet.getMetaData().getColumnCount(); i++) {
+//						System.out.println(resultSet.getString(i));
+//					}
+//					System.out.println("New Row");
+//				}
+//			}else {
+//				System.out.println("Failed to connect to PostgresSQL server");
+//			}
+//		}catch(SQLException e){
+//			e.printStackTrace();
+//		}
+//	}
 	
 	public void query(String query) {
 		try(Connection connection = DriverManager.getConnection(
